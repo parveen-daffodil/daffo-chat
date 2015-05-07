@@ -25,6 +25,11 @@ if (Meteor.isClient) {
     'click .addRoom': function(e) {
       console.log('add Room called');
       _addRoom();
+    },
+    'keyup #newroom': function(e) {
+      if (e.type == "keyup" && e.which == 13) {
+        _addRoom();
+      }
     }
   });
 
@@ -58,7 +63,9 @@ if (Meteor.isClient) {
 
   Template.rooms.events({
     'click li': function(e) {
-      Session.set("roomname", e.target.innerText);
+      console.log("Click on Roomname ",e);
+      console.log("Click on Roomname ",e.target.innerHTML);
+      Session.set("roomname", e.target.innerHTML);
     }
   });
   
