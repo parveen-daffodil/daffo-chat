@@ -1,0 +1,83 @@
+<head>
+    <title>MeteorChat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {{> chat}}
+</body>
+
+<template name="chat">
+    <div class="container">
+
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <a class="brand logo" href="#">Daffodil Chat</a>
+                <ul class="nav pull-right">
+                    <li><a>{{> loginButtons align="right"}}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        {{#if currentUser}}
+
+        <div class="row-fluid ">
+            <div class="span8 well">
+                {{> messages}}
+            </div>
+            <div class="span4 well">
+                {{> rooms}}
+            </div>
+        </div>
+        <div class="row-fluid bottom-region">
+            <div class="span12 well">
+                {{> input}}
+            </div>
+        </div>
+        {{else}}
+        <div class="hero-unit">
+            <h1>Welcome to Daffodil Chat</h1>
+            <p>Please login!</p>
+        </div>
+        {{/if}}
+
+    </div>
+</template>
+
+<template name="input">
+    <input type="text" id="msg" placeholder="Your message goes here..." style="width: 60%; margin-bottom: 0px">
+    <input type="button" value="Send message" class="btn btn-primary sendMsg">
+</template>
+
+<template name="newRoom">
+    <input type="text" id="newroom" placeholder="New room " style="width: 50%; margin-bottom: 0px">
+    <input type="button" value="Add a new Room" class="btn btn-primary addRoom">
+</template>
+
+<template name="messages">
+    <h4>Welcome to Room: {{roomname}}</h4>
+    <div id="messages" style="background-color: #ffffff; border: 1px solid darkgray; max-height: 200px; overflow: auto">
+        {{#each messages}}
+            {{> message}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="message">
+    <p><strong>{{user}}</strong> <span style="font-size: 0.7em; color: darkgray">({{timestamp}})</span>: <i>{{msg}}</i></p>
+</template>
+
+<template name="rooms">
+    <h4>Join a room:</h4>
+    <ul>
+    {{#each rooms}}
+        {{> room}}
+    {{/each}}
+    </ul>
+    <div>
+        {{> newRoom}}
+    </div>
+</template>
+
+<template name="room">
+    <li style="cursor: pointer; {{roomstyle}}">{{roomname}}</li>
+</template>

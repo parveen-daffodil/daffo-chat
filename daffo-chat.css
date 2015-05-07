@@ -1,0 +1,12 @@
+/* CSS declarations go here */
+body {
+    padding: 60px;
+}
+.navbar .logo {
+	float:right;
+}
+.bottom-region {
+	float: left;
+	position: absolute;
+	bottom: 0;
+}
